@@ -16,6 +16,10 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.group(()=>{
+  Route.get('articles', 'ArticleController.index')
+  Route.get('articles/:id', 'ArticleController.show')
+  Route.post('articles', 'ArticleController.store')
+  Route.put('articles/:id', 'ArticleController.update')
+  Route.delete('articles/:id', 'ArticleController.delete')
+}).prefix('api/v1')
